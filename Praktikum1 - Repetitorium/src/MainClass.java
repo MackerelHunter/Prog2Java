@@ -5,8 +5,11 @@ public class MainClass {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		doExercise1();
+		doExercise2();
+		doExercise3();
+		doExercise4();
 	}
-	
+
 	static void doExercise1() {
 		int[][] dreieck = new int[6][];
 		for (int i = 0; i < dreieck.length; i++) {
@@ -23,9 +26,34 @@ public class MainClass {
 			}
 		}
 		System.out.println(Arrays.deepToString(dreieck));
-		
+
 	}
-	
-	
+
+	static void doExercise2() {
+		SmartNumber numma = new SmartNumber(2);
+		System.out.println(numma.isPrime());
+		for (int i = 1; i <= 20; i++) {
+			numma.setNumber(i);
+			System.out.println(numma.isPrime());
+		}
+	}
+
+	static void doExercise3() {
+		TextNote tn = new TextNote("Wichtiger Text", 1);
+		System.out.println(tn.toString());
+		tn.changePriority();
+		System.out.println(tn.toString());
+		tn.changeEntry("Nicht mehr so wichtig");
+		System.out.println(tn.toString());
+	}
+
+	static void doExercise4() {
+		NoteBook nota = new NoteBook();
+		nota.addNote(new TextNote("Haha", 0));
+		nota.addNote(new TextNote("Hihi", 1));
+		nota.getNote(0).changePriority();
+		nota.getNote(1).changeEntry("Hoho");
+		nota.listing();
+	}
 
 }
