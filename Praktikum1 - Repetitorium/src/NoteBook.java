@@ -1,19 +1,20 @@
 import java.util.ArrayList;
 
 public class NoteBook {
-	private ArrayList<TextNote> notes;
+	//Achte darauf, dass das NoteBook mit dem Interface Note agiert, nicht mit der implementierenden Klasse TextNote
+	private ArrayList<Note> notes;
 	
 	public NoteBook() {
-		notes = new ArrayList<TextNote>();
+		notes = new ArrayList<Note>();
 	}
 	
-	public void addNote(TextNote textNote) {
-		if (textNote != null) {
-			notes.add(textNote);
+	public void addNote(Note note) {
+		if (note != null) {
+			notes.add(note);
 		}
 	}
 	
-	public TextNote getNote(int n) {
+	public Note getNote(int n) {
 		if (n >= 0 || n <= notes.size()) {
 			return notes.get(n);
 		}
@@ -22,8 +23,8 @@ public class NoteBook {
 	
 	public void listing() {
 		System.out.println("Liste der Notizen:\n==================");
-		for (TextNote textNote : notes) {
-			System.out.println(textNote.toString());
+		for (Note note : notes) {
+			System.out.println(note.toString());
 		}
 	}
 }

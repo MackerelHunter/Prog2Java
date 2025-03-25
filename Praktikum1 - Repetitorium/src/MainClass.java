@@ -4,10 +4,10 @@ public class MainClass {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		doExercise1();
-		doExercise2();
+		//doExercise1();
+		//doExercise2();
 		doExercise3();
-		doExercise4();
+		//doExercise4();
 	}
 
 	static void doExercise1() {
@@ -39,7 +39,8 @@ public class MainClass {
 	}
 
 	static void doExercise3() {
-		TextNote tn = new TextNote("Wichtiger Text", 1);
+		//auf Verwendung der Konstanten beim Konstruktor-Aufruf achten!
+		TextNote tn = new TextNote("Wichtiger Text", TextNote.PRIORITY_HIGH);
 		System.out.println(tn.toString());
 		tn.changePriority();
 		System.out.println(tn.toString());
@@ -49,8 +50,8 @@ public class MainClass {
 
 	static void doExercise4() {
 		NoteBook nota = new NoteBook();
-		nota.addNote(new TextNote("Haha", 0));
-		nota.addNote(new TextNote("Hihi", 1));
+		nota.addNote(new TextNote("Haha", TextNote.PRIORITY_LOW));
+		nota.addNote(new TextNote("Hihi", TextNote.PRIORITY_HIGH));
 		nota.getNote(0).changePriority();
 		nota.getNote(1).changeEntry("Hoho");
 		nota.listing();

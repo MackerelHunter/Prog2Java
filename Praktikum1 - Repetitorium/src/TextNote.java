@@ -15,7 +15,9 @@ public class TextNote implements Note {
 		this.entry = (entry == null)? "" : entry;
 		this.priority = (priority == PRIORITY_LOW)? PRIORITY_LOW : PRIORITY_HIGH;
 		sdf = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+		//folgendes funktioniert, wie die Kontrollausgabe darunter zeigt
 		creationDate = lastModified = timeStamp();
+		//System.out.println(creationDate + " " + lastModified);
 	}
 	
 	public TextNote (String entry) {
@@ -55,7 +57,7 @@ public class TextNote implements Note {
 		priority = (priority == PRIORITY_LOW)? PRIORITY_HIGH : PRIORITY_LOW;
 		setLastModified();
 	}
-	
+	@Override
 	public String toString() {
 		return String.format("[von: %s; geändert: %s; Priorität: %6s; %s]", getCreationDate(), getLastModified(), (getPriority()==0)? "normal" : "hoch", getEntry());
 	}
