@@ -1,11 +1,14 @@
+import java.util.Scanner;
 
 public class MainClas {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		//doExercise11();
 		//doExercise12();
-		doExercise13();
+		//doExercise13();
+		//System.out.println("Ganze Zahl: " + readForced());
+		doExercise3(100);
 	}
 
 	static void doExercise11() {
@@ -41,13 +44,39 @@ public class MainClas {
 			// Man muss nicht selber reinschauen
 			acc3.put(100);
 			System.out.println(acc3.toString());
-			acc3.put(30);
+			acc3.put(-30);
 			System.out.println(acc3.toString());
 			acc3.draw(200);
 			System.out.println(acc3.toString());
-		} catch (NegativeAmountException | InsufficientBalanceException e) {
-			e.printStackTrace(); // Gibt die rote Fehlermeldung mit Exception-Namen und wo es aufgetreten ist
+//		} catch (NegativeAmountException | InsufficientBalanceException e) {
+//			e.printStackTrace(); // Gibt die rote Fehlermeldung mit Exception-Namen und wo es aufgetreten ist
+		} catch (NegativeAmountException e) {
+			System.err.println("Falsche Eingabe: " + e.toString());
+		} catch (InsufficientBalanceException e) {
+			System.err.println("Netter Versuch: " + e.toString());
 		}
 		System.out.println("Hier geht's weiter");
+	}
+	
+	static void doExercise3(int steps) throws InterruptedException {
+		StopWatch sw = new StopWatch();
+		sw.start(steps);
+	}
+	
+	
+	
+	public static int readForced() {
+		Scanner scan = new Scanner(System.in);
+		int entry;
+		while (true) {
+			try {
+				System.out.print("Bitte geben Sie jetzt eine ganze Zahl ein: ");
+				entry = Integer.parseInt(scan.next());
+				break;
+			} catch (NumberFormatException e) {
+				System.err.println("Kein Integer!");
+			}
+		}
+		return entry;
 	}
 }
