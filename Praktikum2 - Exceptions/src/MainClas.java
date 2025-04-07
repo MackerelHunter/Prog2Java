@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class MainClas {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException { // Wir werfen ein letztes Mal, jetzt an's Betriebssystem
 		// TODO Auto-generated method stub
 		//doExercise11();
 		//doExercise12();
@@ -58,7 +58,7 @@ public class MainClas {
 		System.out.println("Hier geht's weiter");
 	}
 	
-	static void doExercise3(int steps) throws InterruptedException {
+	static void doExercise3(int steps) throws InterruptedException { // Wir werfen weiter
 		StopWatch sw = new StopWatch();
 		sw.start(steps);
 	}
