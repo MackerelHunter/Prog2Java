@@ -44,8 +44,8 @@ public class MyWin extends JFrame {
 		//ActionListener a = new MyListener();
 		// bRed.addActionListener(aRed); // Wenn wir auf Rot klicken, passiert was
 		
-		bGreen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		bGreen.addActionListener(new ActionListener() { // Der ActionListener wird zum Subscriber vom Button
+			public void actionPerformed(ActionEvent e) { // JButtons lösen halt beim Klicken "ActionEvents" aus
 				centerPane.setBackground(Color.GREEN);
 			}
 		});

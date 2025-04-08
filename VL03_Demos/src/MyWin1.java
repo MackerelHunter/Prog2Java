@@ -11,8 +11,9 @@ public class MyWin1 extends JFrame {
 		setLocation((d.width - getSize().width)/2, (d.height - getSize().height)/2);
 		
 		// Layoutmanager
-		setLayout(new GridLayout(0, 2, 10, 5)); //Zeilen, Spalten, Abstände
+		setLayout(new BorderLayout()); //Zeilen, Spalten, Abstände
 		
+
 		// Komponenten einfügen
 		JLabel l1 = new JLabel("Ich zeige einen Text");
 		add(l1); // JFrame ist auch ein Container, der Komponenten enthalten kann
