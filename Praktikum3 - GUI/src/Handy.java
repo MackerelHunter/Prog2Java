@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.*;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.awt.event.*;
@@ -65,35 +66,52 @@ public class Handy extends JFrame {
 		for (int i = 0; i < buttonList.size(); i++) {
 			buttonList.get(i).addActionListener(buttonListener);
 		}
-		
+
 		bWahl.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dial();
+				try {
+					dial();
+				} catch (IOException x) {
+					lStatus.setText("Ungültige Nummer");
+				}
 			}
 		}); // Klammer nicht vergessen
-		
+
 		bAbbr.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				tSearch.setText("");
-				
+				lStatus.setText(getrennt);
+				enteredNumber = "";
+				tSearch.setText(enteredNumber);
+
 			}
 		});
-		
+
 	}
-	
+
 	//Testfunktion, um Zugriff auf buttonList-Elemente zu prüfen
 	public void changeButtonNumber(int number, String newLabel) {
 		buttonList.get(number).setText(newLabel);
 	}
 	
-	private void dial() {
-		lStatus.setText(tSearch.getText()); // ändert das JLabel lStatus zum Inhalt vom Textfeld tSearch
+	private void dial() throws IOException {
+
+		//Das wäre ne Möglichkeit, die Sache mit Exceptions zu behandeln
+//		try {
+//			lStatus.setText("Gewählt: " + Integer.parseInt(tSearch.getText())); // ändert das JLabel lStatus zum Inhalt vom Textfeld tSearch
+//		} catch (NumberFormatException e) {
+//			throw new IOException();
+//		}
+		
+		// Hier verwenden wir RegEx
+		if (tSearch.getText().matches("\\d*")) {
+			lStatus.setText("Gewählt: " + tSearch.getText()); // ändert das JLabel lStatus zum Inhalt vom Textfeld tSearch
+		} else {
+			throw new IOException();
+		}
 	}
-
-
 }
