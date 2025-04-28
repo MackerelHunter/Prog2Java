@@ -5,7 +5,8 @@ public class MainClass {
 		// TODO Auto-generated method stub
 		//doExperiment1();
 		//doExperiment2();
-		doExperiment3();
+		//doExperiment3();
+		doExperiment4();
 	}
 	
 	//*** Flexibilität ohne Generics
@@ -50,5 +51,16 @@ public class MainClass {
 		sbTruck.tellLength(); // Wir können tellLength() aufrufen, weil der Paremeter die CharSequence extended (siehe TextTruck.java)
 		// sTruck = new TextTruck<StringBuffer>(); // Macht er nicht, weil wir sTruck mit String parametrisiert haben
 	}
-
+	
+	//*** Wildcards einsetzen
+	static boolean isATruckEmpty(Truck<?> t1, Truck <?> t2) { //Will zwei Truckobjekte reintun können, aber die sollen beliebig parametrisiert sein können
+		return ((t1.unload()==null) || (t2.unload()==null)); //Ist einer der beiden Trucks "leer"?
+	}
+	
+	static void doExperiment4() {
+		Truck<String> t1 = new Truck<>();
+		t1.load("Ladung hehe");
+		Truck<Long> t2 = new Truck<>();
+		System.out.println(isATruckEmpty(t1, t2));
+	}
 }
