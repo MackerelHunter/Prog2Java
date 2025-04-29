@@ -7,6 +7,9 @@ public class MainClass {
 	
 	static void doExercise1() {
 		LambdaTest lt = new LambdaTest();
-		// Hier kann man Methoden von LambdaTest aufrufen
+		lt.printerTest();
+		lt.sortTest();
+		lt.functionalInterfaceTest();
+		lt.iterateTest();
 	}
 }
