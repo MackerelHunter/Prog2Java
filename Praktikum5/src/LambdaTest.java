@@ -40,7 +40,7 @@ public class LambdaTest {
 		Consumer<Double> squareConsumer = base -> System.out.println("Quadrat: " + base*base);
 		squareConsumer.accept(5.0);
 		
-		Supplier<String> hourSupplier =  () -> {return (LocalDateTime.now().getHour() + " Uhr");};
+		Supplier<String> hourSupplier =  () -> {return (LocalDateTime.now().getHour() + " Uhr");}; // return und Klammern sind bei einer Zeile überflüssig
 		System.out.println(hourSupplier.get());
 		
 		String[] stringArray = {"hihi", "haha", "hehe"};
