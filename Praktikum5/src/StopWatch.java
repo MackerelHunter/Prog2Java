@@ -8,40 +8,31 @@ public class StopWatch extends JFrame {
 	
 	private JButton bStart, bStop, bReset;
 	private JLabel theTime;
-	private int centiSeconds, seconds;
+	private int deciSeconds, seconds;
+	private static final int TIMER_STEPS = 100; // Wir sollen in Zehntelsekunden zählen, die 100stel-Sekunden bleiben dann halt immer 0
 	
 	public StopWatch(int borderSize, String title) {
 		super(title);
 		setSize(borderSize, borderSize);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(null); // zentriert das Fenster
 		setLayout(new BorderLayout());
 		
-		theTime = new JLabel(String.format("%02d:%02d", seconds, centiSeconds), SwingConstants.CENTER);
+		theTime = new JLabel("placeholder", SwingConstants.CENTER);
+		updateTime();
 		theTime.setFont(new Font("SansSerif", Font.PLAIN, borderSize/3));
 		add(theTime);
-		int timerSteps = 100; // Wir sollen in Zehntelsekunden zählen, die 100stel-Sekunden bleiben dann halt immer 0
-		Timer timer = new Timer (timerSteps, event -> { 
-			centiSeconds = centiSeconds + (timerSteps/10);
-			if (centiSeconds == 100) {
-				centiSeconds = 0;
-				seconds++;
-			}
-			theTime.setText(String.format("%02d:%02d", seconds, centiSeconds));
-		});
+		Timer timer = new Timer (TIMER_STEPS, event -> steps());
 		
 		JPanel bottomButtons = new JPanel();
 		bottomButtons.setLayout(new FlowLayout()); // FlowLayout erzeugt automatisch Abstände zu den Rändern
 		bStart = new JButton("Start");
 		bStop = new JButton ("Stop");
 		bReset = new JButton ("Reset");
+		// GUI-Programmierung ist klassische Anwendung von Lambda-Ausdrücken
 		bStart.addActionListener(event -> timer.start());
 		bStop.addActionListener(event -> timer.stop());
-		bReset.addActionListener(event -> {
-			centiSeconds = 0;
-			seconds = 0;
-			theTime.setText(String.format("%02d:%02d", seconds, centiSeconds));
-		});
+		bReset.addActionListener(event -> reset());
 		bottomButtons.add(new JLabel(""));
 		bottomButtons.add(bStart);
 		bottomButtons.add(bReset);
@@ -50,5 +41,26 @@ public class StopWatch extends JFrame {
 		add (bottomButtons, BorderLayout.SOUTH);
 		bottomButtons.setBackground(Color.GRAY);
 	}
-
+	
+	private void steps() {
+		deciSeconds++;
+		if (deciSeconds == 10) {
+			deciSeconds = 0;
+			seconds++;
+		}
+		if (seconds == 100) {
+			seconds = 0;
+		}
+		updateTime();
+	}
+	
+	private void updateTime() {
+		theTime.setText(String.format("%02d:%1d0", seconds, deciSeconds));
+	}
+	
+	private void reset() {
+			deciSeconds = 0;
+			seconds = 0;
+			updateTime();
+	}
 }
